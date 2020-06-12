@@ -1,6 +1,6 @@
 {
-    "name": "mabasic/hello-world",
-    "description": "Testing Phel language.",
+    "name": "mabasic/phel-lumen-demo",
+    "description": "Demonstrates how to get Lumen working with Phel.",
     "authors": [
         {
             "name": "Mario Bašić",

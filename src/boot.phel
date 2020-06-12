@@ -3,7 +3,7 @@
     (:use \Laravel\Lumen\Application))
 
 # Workaround for Phel not having access to PHP `__DIR__`.
-(def home-dir "/home/mabasic/code/src/test/hello-world")
+(def home-dir "/home/mabasic/code/src/github.com/mabasic/phel-lumen-demo")
 
 (php/-> (php/new LoadEnvironmentVariables home-dir) (bootstrap))
 
@@ -94,21 +94,37 @@
 #  the application. This will provide all of the URLs the application
 #  can respond to, as well as the controllers that may handle them.
 
-(php/-> (php/-> app router) (group @{
-    :namespace "\App\Http\Controllers"
-} (fn [router] (php/require (str home-dir "/../routes/web.php")))))
 
+
+# Argument 1 passed to Laravel\Lumen\Routing\Router::group() must be of the type array, object given
+#
+# This is a way to create a key value array in Phel for PHP.
+# (let [arr (php/array)] (php/aset arr "namespace" "\App\Http\Controllers") (print arr))
+#
+# Argument 2 passed to Laravel\Lumen\Routing\Router::group() must be an instance of Closure, instance of class@anonymous given
+#
+# This I don't know how to resolve.
+#
+# Code block bellow does not run. Do I need it to run?
+# (php/-> (php/-> app router) (group @{
+#     :namespace "\App\Http\Controllers"
+# } (fn [router] (php/require (str home-dir "/../routes/web.php")))))
+
+# This is how the code above looks like in PHP.
 # $app->router->group([
 #     'namespace' => 'App\Http\Controllers',
 # ], function ($router) {
 #     require __DIR__.'/../routes/web.php';
 # });
 
-# Gets the environment in which the app is running.
+# Prints the environment in which the app is running.
+# `local` means that the .env file is loaded. `production` means that something is wrong.
 # (print (php/-> app (environment)))
 
+# This returns "hello world" on `/`.
 # (php/-> (php/-> app router) (get "/" (fn [] "hello world")))
 
+# Trying to create a function which I can pass to the router.
 # (defn get-home
 #     "It returns the home view."
 #     (php/view "home"))
