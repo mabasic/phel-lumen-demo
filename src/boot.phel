@@ -49,7 +49,6 @@
 
 (php/-> app (configure "app"))
 
-
 # --------------------------------------------------------------------------
 #  Register Middleware
 # --------------------------------------------------------------------------
@@ -94,8 +93,6 @@
 #  the application. This will provide all of the URLs the application
 #  can respond to, as well as the controllers that may handle them.
 
-
-
 # Argument 1 passed to Laravel\Lumen\Routing\Router::group() must be of the type array, object given
 #
 # This is a way to create a key value array in Phel for PHP.
@@ -116,6 +113,10 @@
 # ], function ($router) {
 #     require __DIR__.'/../routes/web.php';
 # });
+
+# --------------------------------------------------------------------------
+#  Routes (Phel) (Playground)
+# --------------------------------------------------------------------------
 
 # Prints the environment in which the app is running.
 # `local` means that the .env file is loaded. `production` means that something is wrong.
