@@ -1,0 +1,23 @@
+{
+    "name": "mabasic/hello-world",
+    "description": "Testing Phel language.",
+    "authors": [
+        {
+            "name": "Mario Bašić",
+            "email": "mario@laravelista.hr"
+        }
+    ],
+    "require": {
+        "phel/phel": "dev-master",
+        "laravel/lumen-framework": "7.x-dev"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
