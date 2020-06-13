@@ -1,11 +1,9 @@
 (ns hello-world\boot
     (:use \Laravel\Lumen\Bootstrap\LoadEnvironmentVariables)
-    (:use \Laravel\Lumen\Application))
+    (:use \Laravel\Lumen\Application)
+    (:require hello-world\routes))
 
-# Workaround for Phel not having access to PHP `__DIR__`.
-(def home-dir "/home/mabasic/code/src/github.com/mabasic/phel-lumen-demo")
-
-(php/-> (php/new LoadEnvironmentVariables home-dir) (bootstrap))
+(php/-> (php/new LoadEnvironmentVariables (php/dirname __DIR__)) (bootstrap))
 
 (php/date_default_timezone_set (php/env "APP_TIMEZONE" "UTC"))
 
@@ -17,7 +15,7 @@
 #  that serves as the central piece of this framework. We'll use this
 #  application as an "IoC" container and router for this framework.
 
-(def app (php/new Application home-dir))
+(def app (php/new Application (php/dirname __DIR__)))
 
 # (php/-> app (withFacades))
 
@@ -130,7 +128,8 @@
 #     "It returns the home view."
 #     (php/view "home"))
 
-(php/-> (php/-> app router) (get "/" (fn [] (php/view "home"))))
+# (php/-> (php/-> app router) (get "/" (fn [] (php/view "home"))))
+(php/-> (php/-> app router) (get "/" routes/home))
 # (php/-> (php/-> app router) (get "/" get-home))
 
 # --------------------------------------------------------------------------
